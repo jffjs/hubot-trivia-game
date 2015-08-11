@@ -73,7 +73,8 @@ class Game
         name = resp.envelope.user.name.toLowerCase().trim()
         value = @currentQ.value.replace /[^0-9.-]+/g, ""
         @robot.logger.debug "#{name} answered correctly."
-        user = resp.envelope.user
+        # user = resp.envelope.user
+        user = @robot.brain.userForName name
         user.triviaScore = user.triviaScore or 0
         user.triviaScore += parseInt value
         resp.reply "Score: #{user.triviaScore}"
